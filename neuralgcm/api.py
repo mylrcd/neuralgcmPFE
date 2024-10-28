@@ -420,7 +420,8 @@ class PressureLevelModel:
     forcings = self._squeeze_level_from_forcings(forcings)
     forcings = _prepend_dummy_time_axis(forcings)
     f = self._structure.forcing_fn(self.params, None, forcings, sim_time)
-    f = jax.tree.map(lambda x, y: None if x is None else f(x, y), f, is_leaf=lambda x: x is None)
+    f = jax.tree.map(lambda x: None if x is None else x, f, is_leaf=lambda x: x is None)
+    #f = jax.tree.map(lambda x, y: None if x is None else f(x, y), f, is_leaf=lambda x: x is None)
     return self._structure.encode_fn(self.params, rng_key, inputs, f)
 
   @jax.jit
