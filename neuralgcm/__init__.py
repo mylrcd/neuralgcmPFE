@@ -43,5 +43,6 @@ import neuralgcm.stochastic
 import neuralgcm.towers
 
 from neuralgcm.api import PressureLevelModel
+from neuralgcm import demo
 
 __version__ = "1.0.0"
